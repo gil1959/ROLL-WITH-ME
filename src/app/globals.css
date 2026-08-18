@@ -1,26 +1,183 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --font-bodoni: 'Bodoni Moda', serif;
+    --font-yellowtail: 'Yellowtail', cursive;
+    --font-dancing-script: 'Dancing Script', cursive;
+    --font-dm-serif: 'DM Serif Display', serif;
+    --font-roboto-slab: 'Roboto Slab', serif;
+    --font-roboto: 'Roboto', sans-serif;
+    --font-courier: 'Courier Prime', monospace;
+    --font-typewriter: 'Special Elite', monospace;
+
+    --bg-sepia: #eae4d9;
+    --text-primary: #4a382c;
+    --text-secondary: #5e4b3e;
+    --btn-dark: #34261d;
+    --btn-border: #7a6655;
+    --border-sepia: #7a6655;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Vintage Frame Border with Curved Corners */
+.vintage-frame {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.vintage-border-outer {
+  position: absolute;
+  inset: 16px;
+  border: 1.5px solid rgba(85, 68, 54, 0.5);
+  border-radius: 22px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.vintage-border-inner {
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(85, 68, 54, 0.4);
+  border-radius: 18px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* Vintage Faded Ink Texture — SVG fractalNoise + gradient background-clip (user-approved effect) */
+.vintage-faded-heading {
+  color: #3e2e23;
+  background-color: #3e2e23;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='distressNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.85  0 0 0 0 0.78  0 0 0 0 0.68  0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23distressNoise)'/%3E%3C/svg%3E"),
+    linear-gradient(125deg, #3e2e23 0%, #685747 18%, #3e2e23 32%, #7a6858 48%, #3e2e23 64%, #6e5c4c 82%, #3e2e23 100%);
+  background-size: 180px 180px, 100% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+}
+
+/* Same effect but inline-block for single letter use */
+.vintage-faded-letter {
+  color: #3e2e23;
+  background-color: #3e2e23;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='distressNoise2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.85  0 0 0 0 0.78  0 0 0 0 0.68  0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23distressNoise2)'/%3E%3C/svg%3E"),
+    linear-gradient(125deg, #3e2e23 0%, #685747 18%, #3e2e23 32%, #7a6858 48%, #3e2e23 64%, #6e5c4c 82%, #3e2e23 100%);
+  background-size: 180px 180px, 100% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Custom ink stroke underline under 'with' in logo and 'minute.' in headline */
+.with-underline {
+  position: relative;
+  display: inline-block;
+}
+
+/* Vintage Badge Button (Matching reference image partner with us / see experience) */
+.vintage-badge-btn {
+  background-color: #34261d;
+  color: #ede5d8;
+  border: 1.5px solid #7a6655;
+  border-radius: 12px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-courier), monospace;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(35, 23, 15, 0.2);
+}
+
+.vintage-badge-btn::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(237, 229, 216, 0.45);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.vintage-badge-btn:hover {
+  background-color: #241912;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(35, 23, 15, 0.35);
+}
+
+/* Typography Helpers */
+.font-bodoni {
+  font-family: var(--font-bodoni), Georgia, serif;
+}
+
+.font-yellowtail {
+  font-family: var(--font-yellowtail), cursive;
+}
+
+.font-dancing-script {
+  font-family: var(--font-dancing-script), cursive;
+}
+
+.font-dm-serif {
+  font-family: var(--font-dm-serif), serif;
+}
+
+.font-roboto {
+  font-family: var(--font-roboto), sans-serif;
+}
+
+.font-roboto-slab {
+  font-family: var(--font-roboto-slab), serif;
+}
+
+.font-courier {
+  font-family: var(--font-courier), monospace;
+}
+
+.font-typewriter {
+  font-family: var(--font-typewriter), monospace;
+}
+
+.with-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 100%;
+  height: 2px;
+  background-color: #34261d;
+  border-radius: 1px;
+}
+
+.ink-stroke {
+  position: relative;
+}
+
+.ink-stroke::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 4px;
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='8' viewBox='0 0 200 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 5C35 2.5 120 1 198 4.5' stroke='%234a382c' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
